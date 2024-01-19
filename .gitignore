@@ -1,0 +1,63 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Django related
+*.log
+db.sqlite3
+media/
+
+# Secret key
+*.secret_key
+
+# Development/production-specific settings
+*.env
+
+# Local development settings
+local_settings.py
+
+# IDE files
+.idea/
+.vscode/
+
+# Compiled Python files
+*.pyc
+
+# Compiled C extension
+*.so
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Logs and databases
+*.log
+*.sql
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Python environments
+venv/
+env/
+
+# Node.js
+node_modules/
