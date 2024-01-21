@@ -1,9 +1,8 @@
-# music_player_app/urls.py
-
+from . import views, generation
 from django.urls import path
-from .views import index, download_midi
 
 urlpatterns = [
-    path("", index, name="index"),
-    path("download_midi/", download_midi, name="download_midi"),
+    path('', views.index, name='index'),
+    path('download/', generation.user_text_input, name='user_text_input'),
+    path("download_midi/", views.download_midi, name="download_midi"),
 ]
