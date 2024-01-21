@@ -1,7 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+
 import mimetypes
 import os
+import concurrent.futures
+
+executor = concurrent.futures.ThreadPoolExecutor(1)
 
 
 def print_input(request):
@@ -14,33 +18,19 @@ def print_input(request):
     return user_input
 
 
-def play_sample(request):
-    audio_file_path = "static/music/abc.mp3"
-    return audio_file_path
+def index(request):
+    context = {"user_input": "", "generation_finished": False}
+    return render(request, "index.html", context)
 
 
 def download_midi(request):
-    # Specify the file path on the server
-    file_path = "/Users/emeraldchang/Desktop/Music_generation/demo_site/Musecoco_Demo/music_player_app/static/music/abc.mp3"
+    file_path = "/home/alpaca/musecoco_test/muzic/musecoco/2-attribute2music_model/generation/0505/linear_mask-1billion-attribute2music/infer_pipeline/topk15-t1.0-ngram0/0/midi/1.mid"
 
-    # Open the file and create an HttpResponse object
     with open(file_path, "rb") as file:
         response = HttpResponse(
             file.read(), content_type=mimetypes.guess_type(file_path)[0]
         )
-        # Set the Content-Disposition header to prompt the user for download
         response[
             "Content-Disposition"
         ] = f'attachment; filename="{os.path.basename(file_path)}"'
         return response
-
-
-def index(request):
-    user_input = print_input(request)
-    audio_file_path = play_sample(request)
-
-    context = {
-        "user_input": user_input,
-        "audio_file_path": audio_file_path,
-    }
-    return render(request, "index.html", context)
